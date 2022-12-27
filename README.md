@@ -34,7 +34,7 @@ The parser use the following rules to parse math expressions:
 
 # Example
 
-Parsing the expression (sin(PI*0.25)+cos(PI*0.25))*sqrt(2) you obtain the following binary tree:
+Parsing the expression (sin(PI\*0.25)+cos(PI\*0.25))*sqrt(2) you obtain the following binary tree:
 
 ```
          *
