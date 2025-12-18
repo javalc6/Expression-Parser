@@ -1,4 +1,10 @@
-public class BinaryNode extends Node {//Node element with two childs
+package math;
+
+/**
+ * Node element with two children
+ */
+
+public class BinaryNode extends Node {
 	protected Node left;
 	protected Node right;
 

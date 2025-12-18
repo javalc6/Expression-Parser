@@ -1,4 +1,10 @@
-public class UnaryNode extends Node {//Node element with one child
+package math;
+
+/**
+ * Node element with one child
+ */
+
+public class UnaryNode extends Node {
 	protected Node child;
 
 	UnaryNode(Type type) {

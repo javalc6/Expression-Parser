@@ -21,38 +21,11 @@ Rules for expressions:
 27-12-2022: initial release: storing expression as generic tree
 
 */
-import java.util.HashMap;
+package math;
 
-public class ExpressionParserPlus {
+public class ExpressionParser {
 
 	final static int MaxNumOfDigit = 38; // max number of digits for numbers
-
-	public static void main(String[] args) {//demo part of the ExpressionParserPlus class
-		ExpressionParserPlus ep = new ExpressionParserPlus();
-		try {
-			Node p1 = ep.parseExpression("log(exp((sin(PI/4)+cos(PI/4))/(sqrt(2)*tan(PI/4))))");
-			ep.visit(p1);	
-			System.out.println();
-			System.out.println("Result: "+ep.evaluate(p1));//expected result: 1.0
-			System.out.println();
-
-			Node p2 = ep.parseExpression("(0 == 0) and (0 != 1) and !false or ((true == false) and (2*2 < 5))");
-			ep.visit(p2);
-			System.out.println();
-			System.out.println("Result: "+ep.evaluate(p2));//expected result: true
-			System.out.println();
-
-			Node p3 = ep.parseExpression("5 > 4 ? 1 + 2 + 3 : 2 * 2");
-			ep.visit(p3);
-			System.out.println();
-			System.out.println("Result: "+ep.evaluate(p3));//expected result: 6
-			System.out.println();
-
-		
-		} catch (Exception ex) {
-			System.err.println("Exception: " + ex.getMessage());//ex.printStackTrace();
-		}
-	}
 
 //public method that evaluates an expression stored in tree 'p', returns either Double or Boolean
 	public Object evaluate(Node p) {//@NonNull Node p
@@ -176,20 +149,30 @@ public class ExpressionParserPlus {
 	protected Node factor(StringHolder sh) throws Exception {
 		String identifier = sh.getIdentifier();
 		if (identifier != null)	{
-			if (identifier.equals("false") || identifier.equals("true"))
-				return new NodeIdentifier(identifier);
-			else if (identifier.equals("PI") || identifier.equals("E"))
-				return new NodeIdentifier(identifier);
-			else if (identifier.equals("sin") || identifier.equals("cos") || identifier.equals("tan") || identifier.equals("log") || identifier.equals("exp") || identifier.equals("sqrt")) {
-				Character ch = sh.getChar("(");
-				if (ch != null)	{ // ch == "("
-					UnaryNodeIdentifier ni = new UnaryNodeIdentifier(identifier);
-					ni.child = expression(sh);
-					if (sh.getChar(")") == null)
-						throw new Exception("missing ) bracket");
-					return ni;
-				} else throw new Exception("missing ( bracket");
-			} else throw new Exception("unknown identifier: "+identifier);
+            switch (identifier) {
+                case "false":
+                case "true":
+                    return new NodeIdentifier(identifier);
+                case "PI":
+                case "E":
+                    return new NodeIdentifier(identifier);
+                case "sin":
+                case "cos":
+                case "tan":
+                case "log":
+                case "exp":
+                case "sqrt":
+                    Character ch = sh.getChar("(");
+                    if (ch != null) { // ch == "("
+                        UnaryNodeIdentifier ni = new UnaryNodeIdentifier(identifier);
+                        ni.child = expression(sh);
+                        if (sh.getChar(")") == null)
+                            throw new Exception("missing ) bracket");
+                        return ni;
+                    } else throw new Exception("missing ( bracket");
+                default:
+                    throw new Exception("unknown identifier: " + identifier);
+            }
 		} else {
 			Character ch = sh.getChar("(!-0123456789");
 			if (ch == null)

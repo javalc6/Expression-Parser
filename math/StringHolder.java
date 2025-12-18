@@ -1,4 +1,10 @@
-public class StringHolder {//helper for parsing expressions
+package math;
+
+/**
+ * Helper for parsing expressions
+ */
+
+public class StringHolder {
 	protected final String expr;
 	protected int pointer;
 

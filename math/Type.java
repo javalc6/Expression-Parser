@@ -1,4 +1,10 @@
-public enum Type {//type of Node
+package math;
+
+/**
+ * Type of Node
+ */
+
+public enum Type {
 	number,//number
 	minus,//unary -
 	add,

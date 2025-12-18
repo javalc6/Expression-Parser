@@ -1,5 +1,5 @@
 # Expression Parser
-The class ExpressionParserPlus implements expression parser. It supports parsing of expressions with numbers and booleans values.
+The class ExpressionParser implements expression parser. It supports parsing of expressions with numbers and booleans values.
 
 Numeric expressions may contain brackets ( ), operators *,-,/,+,"and" and "or" and numbers with optional decimal point and values "true" and "false".
 In addition it is possible to use constants "PI" and "E", functions sin(), cos(), tan(), log(), exp(), sqrt().
@@ -12,6 +12,16 @@ parseExpression(String expr): parses the given expression and returns a binary t
 evaluate(Node p): evaluates the binary tree containing an expression;
 
 visit(Node p): visits the binary tree containing an expression;
+```
+
+# TestSuite
+The TestSuite performs positive and negative tests. Compile TestSuite to test package math:
+```
+javac math\TestSuite.java
+```
+Run test suite:
+```
+javac math.TestSuite
 ```
 
 # Syntax Rules
@@ -34,7 +44,7 @@ The parser use the following rules to parse math expressions:
 
 # Example
 
-Parsing the expression (sin(PI\*0.25)+cos(PI\*0.25))*sqrt(2) you obtain the following binary tree:
+Parsing the expression (sin(PI\*0.25)+cos(PI\*0.25))*sqrt(2) will generate the following binary tree:
 
 ```
          *

@@ -1,7 +1,13 @@
-class NodeDouble extends Node {//Node element holding a number
-	protected double num;
+package math;
 
-	NodeDouble(double num) {//node constructor of type number
+/**
+ * Node element holding a number
+ */
+
+class NodeDouble extends Node {
+	protected final double num;
+
+	NodeDouble(double num) {
 		super(Type.number);
 		this.num = num;
 	}
