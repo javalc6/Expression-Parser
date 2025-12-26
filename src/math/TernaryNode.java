@@ -28,20 +28,34 @@ public class TernaryNode extends Node {
         throw new RuntimeException("unexpected type: " + type);
     }
 
-	public void visit() {
-        //will never happen
+	public void visit(StringBuilder sb) {
         if (Objects.requireNonNull(type) == Type.conditional_expression) {
-            System.out.print('(');
-            left.visit();
-            System.out.print(" ? ");
-            center.visit();
-            System.out.print(" : ");
-            right.visit();
-            System.out.print(')');
+			sb.append('(');
+			left.visit(sb);
+			sb.append(" ? ");
+			center.visit(sb);
+			sb.append(" : ");
+			right.visit(sb);
+			sb.append(')');
         } else {
             throw new RuntimeException("unexpected type: " + type);
         }
 	}
 
+	public Node getLeft() {
+		return left;
+	}
+
+	public Node getCenter() {
+		return center;
+	}
+
+	public Node getRight() {
+		return right;
+	}
+
+	public String getNodeAsString() {
+		return type.toString();
+	}
 
 }//end of class Node

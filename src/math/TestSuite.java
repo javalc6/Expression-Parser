@@ -19,19 +19,19 @@ public class TestSuite {
 		try {
 //-- Manual positive tests
 			Node p1 = ep.parseExpression("log(exp((sin(PI/4)+cos(PI/4))/(sqrt(2)*tan(PI/4))))");
-			ep.visit(p1);	
+			System.out.println(ep.visit(p1));	
 			System.out.println();
 			System.out.println("Result: "+ep.evaluate(p1));//expected result: 1.0
 			System.out.println();
 
 			Node p2 = ep.parseExpression("(0 == 0) and (0 != 1) and !false or ((true == false) and (2*2 < 5))");
-			ep.visit(p2);
+			System.out.println(ep.visit(p2));
 			System.out.println();
 			System.out.println("Result: "+ep.evaluate(p2));//expected result: true
 			System.out.println();
 
 			Node p3 = ep.parseExpression("5 > 4 ? 1 + 2 + 3 : 2 * 2");
-			ep.visit(p3);
+			System.out.println(ep.visit(p3));
 			System.out.println();
 			System.out.println("Result: "+ep.evaluate(p3));//expected result: 6
 			System.out.println();

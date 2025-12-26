@@ -1,14 +1,20 @@
 package math;
 
+import java.util.Set;
+
 /**
  * Node element holding unary (one child) identifier
  */
 
 public class UnaryNodeIdentifier extends NodeIdentifier {
+    public final static Set<String> functionSet = Set.of("sin", "cos", "tan", "sqrt", "log", "exp");
+
 	protected Node child;
 
 	UnaryNodeIdentifier(String identifier) {
 		super(identifier);
+		if (!functionSet.contains(identifier))
+			throw new IllegalArgumentException("unknown identifier: " + identifier);
 	}
 
 	public Object evaluate() {
@@ -30,11 +36,20 @@ public class UnaryNodeIdentifier extends NodeIdentifier {
         }
 	}
 
-	public void visit() {
-		System.out.print(identifier);
-		System.out.print("(");
-		child.visit();
-		System.out.print(")");
+	public void visit(StringBuilder sb) {
+		sb.append(identifier);
+		sb.append('(');
+		child.visit(sb);
+		sb.append(')');
 	}
 
+	public void set(String identifier) {
+		if (!functionSet.contains(identifier))
+			throw new IllegalArgumentException("unknown identifier: " + identifier);
+		this.identifier = identifier;
+	}
+
+	public Node getChild() {
+		return child;
+	}
 }//end of class NodeIdentifier

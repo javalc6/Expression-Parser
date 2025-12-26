@@ -45,7 +45,7 @@ public class BinaryNode extends Node {
 		}
 	}
 
-	public void visit() {
+	public void visit(StringBuilder sb) {
 		switch(type) {
 			case add:
 			case subtract:
@@ -59,16 +59,54 @@ public class BinaryNode extends Node {
 			case lte:
 			case gt:
 			case gte:
-				System.out.print('(');
-				left.visit();
-				System.out.print(" " + type + " ");
-				right.visit();
-				System.out.print(')');
+				sb.append('(');
+				left.visit(sb);
+				sb.append(" ").append(getNodeAsString()).append(" ");
+				right.visit(sb);
+				sb.append(')');
 				break;
 			default://will never happen
 				throw new RuntimeException("unexpected type: " + type);
 		}
 	}
 
+	public Node getLeft() {
+		return left;
+	}
+
+	public Node getRight() {
+		return right;
+	}
+
+	public String getNodeAsString() {
+		switch(type) {
+			case add:
+				return "+";
+			case subtract:
+				return "-";
+			case multiply:
+				return "*";
+			case divide:
+				return "/";
+			case and:
+				return "and";
+			case or:
+				return "or";
+			case equal:
+				return "==";
+			case unequal:
+				return "!=";
+			case lt:
+				return "<";
+			case lte:
+				return "<=";
+			case gt:
+				return ">";
+			case gte:
+				return ">=";
+			default://will never happen
+				return type.toString();
+		}
+	}
 
 }//end of class Node

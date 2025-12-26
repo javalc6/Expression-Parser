@@ -5,7 +5,7 @@ package math;
  */
 
 public class NodeIdentifier extends Node {
-	protected final String identifier;
+	protected String identifier;
 
 	NodeIdentifier(String identifier) {
 		super(Type.identifier);
@@ -27,8 +27,11 @@ public class NodeIdentifier extends Node {
         }
 	}
 
-	public void visit() {
-		System.out.print(identifier);
+	public void visit(StringBuilder sb) {
+		sb.append(identifier);
 	}
 
+	public String getNodeAsString() {
+		return identifier;
+	}
 }//end of class NodeIdentifier

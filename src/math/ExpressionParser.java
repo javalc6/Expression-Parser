@@ -18,8 +18,6 @@ Rules for expressions:
 <number> ::= { <digit> }+ [ "." { <digit> }* ]
 <digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 
-27-12-2022: initial release: storing expression as generic tree
-
 */
 package math;
 
@@ -33,8 +31,15 @@ public class ExpressionParser {
 	}
 
 //public method that visits expression stored in tree 'p'
-	public void visit(Node p) {//@NonNull Node p
-		p.visit();
+	public String visit(Node p) {//@NonNull Node p
+		StringBuilder sb = new StringBuilder();
+		p.visit(sb);
+		return sb.toString();
+	}
+
+//public method that visits expression stored in tree 'p'
+	public void visit(Node p, StringBuilder sb) {//@NonNull Node p
+		p.visit(sb);
 	}
 
 //public method that returns the parsed expression as a tree
@@ -152,7 +157,6 @@ public class ExpressionParser {
             switch (identifier) {
                 case "false":
                 case "true":
-                    return new NodeIdentifier(identifier);
                 case "PI":
                 case "E":
                     return new NodeIdentifier(identifier);

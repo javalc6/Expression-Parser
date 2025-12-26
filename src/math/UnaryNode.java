@@ -23,20 +23,34 @@ public class UnaryNode extends Node {
 		}
 	}
 
-	public void visit() {
+	public void visit(StringBuilder sb) {
 		switch(type) {
 			case minus:
-				System.out.print('-');
-				child.visit();
+				sb.append('-');
+				child.visit(sb);
 				break;
 			case not:
-				System.out.print('!');
-				child.visit();
+				sb.append('!');
+				child.visit(sb);
 				break;
 			default://will never happen
 				throw new RuntimeException("unexpected type: " + type);
 		}
 	}
 
+	public Node getChild() {
+		return child;
+	}
+
+	public String getNodeAsString() {
+		switch(type) {
+			case minus:
+				return "-";
+			case not:
+				return "!";
+			default://will never happen
+				return type.toString();
+		}
+	}
 
 }//end of class Node

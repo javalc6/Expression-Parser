@@ -23,6 +23,13 @@ Run test suite:
 ```
 java -cp classes math.TestSuite
 ```
+# Demo
+The demo allows to enter an expression in the top part, see the graph of the the expression tree in the center part and view the result of the math expression or syntax error in the bottom part.
+
+Run demo:
+```
+java -cp classes demo.ExpressionVisualizer
+```
 
 # Syntax Rules
 The parser use the following rules to parse math expressions:
@@ -44,19 +51,5 @@ The parser use the following rules to parse math expressions:
 
 # Example
 
-Parsing the expression (sin(PI\*0.25)+cos(PI\*0.25))*sqrt(2) will generate the following binary tree:
-
-```
-         *
-        / \
-       /   \
-      +    sqrt
-     / \     |
-  sin   cos  2
-  |       |
-  *       *
- / \     / \
-PI 0.25 PI 0.25
-```
-The evaluation of this binary tree returns the value 2, as expected.
-
+Parsing the expression (sin(PI/4)+cos(PI/4))*sqrt(exp((log(2)*tan(PI/4)))) will generate the following binary tree:
+![Screenshot](images/expression_visualizer.png)

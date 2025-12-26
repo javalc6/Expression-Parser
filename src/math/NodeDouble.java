@@ -4,8 +4,8 @@ package math;
  * Node element holding a number
  */
 
-class NodeDouble extends Node {
-	protected final double num;
+public class NodeDouble extends Node {
+	protected double num;
 
 	NodeDouble(double num) {
 		super(Type.number);
@@ -16,8 +16,20 @@ class NodeDouble extends Node {
 		return num;
 	}
 
-	public void visit() {
-		System.out.print(num);
+	public void visit(StringBuilder sb) {
+		sb.append(num);
+	}
+
+	public void set(Double val) {
+		num = val;
+	}
+
+	public double get() {
+		return num;
+	}
+
+	public String getNodeAsString() {
+		return Double.toString(num);
 	}
 
 }//end of class NodeDouble
