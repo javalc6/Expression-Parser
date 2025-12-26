@@ -17,11 +17,11 @@ visit(Node p): visits the binary tree containing an expression;
 # TestSuite
 The TestSuite performs positive and negative tests. Compile TestSuite to test package math:
 ```
-javac math\TestSuite.java
+ant compile
 ```
 Run test suite:
 ```
-javac math.TestSuite
+java -cp classes math.TestSuite
 ```
 
 # Syntax Rules
