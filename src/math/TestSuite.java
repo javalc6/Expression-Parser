@@ -21,19 +21,27 @@ public class TestSuite {
 			Node p1 = ep.parseExpression("log(exp((sin(PI/4)+cos(PI/4))/(sqrt(2)*tan(PI/4))))");
 			System.out.println(ep.visit(p1));	
 			System.out.println();
-			System.out.println("Result: "+ep.evaluate(p1));//expected result: 1.0
+			System.out.println("Result: "+ep.evaluate(p1) + " expected result: 1.0");
 			System.out.println();
 
 			Node p2 = ep.parseExpression("(0 == 0) and (0 != 1) and !false or ((true == false) and (2*2 < 5))");
 			System.out.println(ep.visit(p2));
 			System.out.println();
-			System.out.println("Result: "+ep.evaluate(p2));//expected result: true
+			System.out.println("Result: "+ep.evaluate(p2) + " expected result: true");
 			System.out.println();
 
 			Node p3 = ep.parseExpression("5 > 4 ? 1 + 2 + 3 : 2 * 2");
 			System.out.println(ep.visit(p3));
 			System.out.println();
-			System.out.println("Result: "+ep.evaluate(p3));//expected result: 6
+			System.out.println("Result: "+ep.evaluate(p3) + " expected result: 6.0");
+			System.out.println();
+
+			ep.registerFunction("cube", x -> x * x * x);
+			ep.registerFunction("atan", Math::atan);
+			Node p4 = ep.parseExpression("cube(2)*atan(tan(PI/8))/PI");
+			System.out.println(ep.visit(p4));
+			System.out.println();
+			System.out.println("Result: " + ep.evaluate(p4) + " expected result: 1.0");
 			System.out.println();
 
 //-- Automatic positive tests

@@ -12,6 +12,7 @@ public class NodeIdentifier extends Node {
 		this.identifier = identifier;
 	}
 
+    @Override
 	public Object evaluate() {
         switch (identifier) {
             case "PI":
@@ -27,10 +28,12 @@ public class NodeIdentifier extends Node {
         }
 	}
 
+    @Override
 	public void visit(StringBuilder sb) {
 		sb.append(identifier);
 	}
 
+    @Override
 	public String getNodeAsString() {
 		return identifier;
 	}

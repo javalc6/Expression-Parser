@@ -17,6 +17,7 @@ public class UnaryNodeIdentifier extends NodeIdentifier {
 			throw new IllegalArgumentException("unknown identifier: " + identifier);
 	}
 
+    @Override
 	public Object evaluate() {
         switch (identifier) {
             case "sin":
@@ -36,6 +37,7 @@ public class UnaryNodeIdentifier extends NodeIdentifier {
         }
 	}
 
+    @Override
 	public void visit(StringBuilder sb) {
 		sb.append(identifier);
 		sb.append('(');

@@ -22,11 +22,15 @@ Rules for expressions:
 package math;
 
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 public class ExpressionParser {
     private List<Token> tokens;
     private int current = 0;
+    private final Map<String, Function<Double, Double>> userFunctionLambdas = new HashMap<>();
 
 //public method that evaluates an expression stored in tree 'p', returns either Double or Boolean
 	public Object evaluate(Node p) {//@NonNull Node p
@@ -56,7 +60,16 @@ public class ExpressionParser {
         return result;
     }
 
-    private Node expression() throws ParseException {
+/*public method to register user functions using lambdas, e.g.:
+	registerFunction("cube", x -> x * x * x);
+	registerFunction("toDegrees", Math::toDegrees);
+*/
+    public void registerFunction(String name, Function<Double, Double> logic) {
+        userFunctionLambdas.put(name, logic);
+    }
+
+//Hic sunt leones	
+	private Node expression() throws ParseException {
         Node pcoe = conditional_or_expr();
 
         if (match(Type.question)) {
@@ -170,6 +183,11 @@ public class ExpressionParser {
                 consume(Type.lparen, "Missing ( bracket");
                 UnaryNodeIdentifier func = new UnaryNodeIdentifier(id.value);
                 func.child = expression();
+                consume(Type.rparen, "Missing ) bracket");
+                return func;
+            } else if (userFunctionLambdas.containsKey(id.value)) {
+                consume(Type.lparen, "Missing ( bracket");
+				LambdaFunctionNode func = new LambdaFunctionNode(id.value, expression(), userFunctionLambdas.get(id.value));
                 consume(Type.rparen, "Missing ) bracket");
                 return func;
             }

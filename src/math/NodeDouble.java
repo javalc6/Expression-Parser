@@ -12,10 +12,12 @@ public class NodeDouble extends Node {
 		this.num = num;
 	}
 
+    @Override
 	public Object evaluate() {
 		return num;
 	}
 
+    @Override
 	public void visit(StringBuilder sb) {
 		sb.append(num);
 	}
@@ -28,6 +30,7 @@ public class NodeDouble extends Node {
 		return num;
 	}
 
+    @Override
 	public String getNodeAsString() {
 		return Double.toString(num);
 	}

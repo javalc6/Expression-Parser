@@ -12,6 +12,7 @@ public class UnaryNode extends Node {
 		child = null;
 	}
 
+    @Override
 	public Object evaluate() {
 		switch(type) {
 			case minus:
@@ -23,6 +24,7 @@ public class UnaryNode extends Node {
 		}
 	}
 
+    @Override
 	public void visit(StringBuilder sb) {
 		switch(type) {
 			case minus:
