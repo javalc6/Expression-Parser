@@ -52,4 +52,10 @@ The parser use the following rules to parse math expressions:
 # Example
 
 Parsing the expression (sin(PI/4)+cos(PI/4))*sqrt(exp((log(2)*tan(PI/4)))) will generate the following binary tree:
+
 ![Screenshot](images/expression_visualizer.png)
+
+Parsing the expression (0 == 0) and (0 != 1) and !false or ((true == false) and (2*2 < 5)) will generate the following binary tree:
+
+![Screenshot](images/expression_visualizer2.png)
+
