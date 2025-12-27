@@ -1,26 +1,38 @@
 package math;
 
-/**
- * Type of Node
- */
-
 public enum Type {
-	number,//number
-	minus,//unary -
-	add,
-	subtract,
-	multiply, 
-	divide,
-	bolean,//note: boolean is reserved word in java, so we define bolean
-	not,
-	or,
-	and,
-	equal,//==
-	unequal,//!=
-	gte,//greater than or equal
-	lte,//less than or equal
-	gt,//greater than
-	lt,//less than
-	identifier,//identifier of constant or function
-	conditional_expression// conditional construct with "?" and ":"
+    // Literals and Identifiers
+    number,             // Numeric literal
+    identifier,         // Constant (PI, E) or Variable or Function Name
+    boolean_literal,    // true/false
+
+    // Basic Arithmetic
+    add,                // +
+    subtract,           // -
+    multiply,           // *
+    divide,             // /
+    minus,              // Unary minus
+
+    // Logical Operators
+    not,                // !
+    or,                 // or
+    and,                // and
+
+    // Relational Operators
+    equal,              // ==
+    unequal,            // !=
+    gte,                // >=
+    lte,                // <=
+    gt,                 // >
+    lt,                 // <
+
+    // Structural Symbols (Tokenizer specific)
+    lparen,             // (
+    rparen,             // )
+    question,           // ?
+    colon,              // :
+    eof,                // End of file marker
+
+    // Complex Nodes
+    conditional_expression // Ternary ?:
 }

@@ -25,7 +25,10 @@ class VisualNode {
 }
 
 public class ExpressionVisualizer extends JFrame {
-    private static final int NODE_SIZE = 35;
+    private static final int WIDTH = 1024;
+    private static final int HEIGHT = 720;
+
+	private static final int NODE_SIZE = 35;
     private static final int ROW_HEIGHT = 70;
 
     private static final Stroke HOVER_STROKE = new BasicStroke(5);
@@ -40,6 +43,11 @@ public class ExpressionVisualizer extends JFrame {
     private final JLabel helpLabel;
     private final JPanel renderPanel;
 
+	private static final Color helpBackground = new Color(220, 220, 220);
+	private static final Color renderBackground = new Color(245, 245, 245);
+	private static final Color helpInfoBackground = new Color(200, 255, 200);
+	private static final Color helpErrorBackground = new Color(255, 200, 200);
+
     public ExpressionVisualizer(String initialExpression) {
         super("Expression Visualizer");
         
@@ -48,7 +56,7 @@ public class ExpressionVisualizer extends JFrame {
         helpLabel = new JLabel("Value = ...");
         JPanel helpPanel = new JPanel();
         helpPanel.add(helpLabel);
-        helpPanel.setBackground(new Color(220, 220, 220));
+        helpPanel.setBackground(helpBackground);
 
         renderPanel = new JPanel() {
             @Override
@@ -58,7 +66,7 @@ public class ExpressionVisualizer extends JFrame {
 					renderTree((Graphics2D) g);
             }
         };
-        renderPanel.setBackground(new Color(245, 245, 245));
+        renderPanel.setBackground(renderBackground);
 
         setLayout(new BorderLayout());
         add(topBar, BorderLayout.NORTH);
@@ -68,7 +76,7 @@ public class ExpressionVisualizer extends JFrame {
         setupInteractions();
         setupParsingLogic(helpPanel);
 
-        setSize(800, 600);
+        setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
@@ -80,11 +88,11 @@ public class ExpressionVisualizer extends JFrame {
             public void update() {
                 try {
                     root = ep.parseExpression(topBar.getText());
-                    helpPanel.setBackground(new Color(200, 255, 200));
+                    helpPanel.setBackground(helpInfoBackground);
                     helpLabel.setText("Value = " + ep.evaluate(root));
                     renderPanel.repaint();
                 } catch (Exception ex) {
-                    helpPanel.setBackground(new Color(255, 200, 200));
+                    helpPanel.setBackground(helpErrorBackground);
                     helpLabel.setText("Error: " + ex.getMessage());
                 }
             }
