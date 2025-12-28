@@ -21,7 +21,7 @@ ant compile
 ```
 Run test suite:
 ```
-java -cp classes math.TestSuite
+java -cp classes test.TestSuite
 ```
 # Demo
 The demo allows to enter an expression in the top part, see the graph of the the expression tree in the center part and view the result of the math expression or syntax error in the bottom part.

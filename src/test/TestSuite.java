@@ -1,15 +1,20 @@
 /**
  * Test suite for ExpressionParser
+ *
+ * TODO: Migrate from Nashorn engine to Rhino engine or GraalVM JS ?
  */
-package math;
+package test;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import math.ExpressionParser;
+import math.Node;
+
 public class TestSuite {
-    private static final String[] FUNCTIONS = {"sin", "cos", "tan", "log", "exp", "sqrt"};
+    private static final String[] FUNCTIONS = {"sin", "cos", "tan", "log", "exp", "sqrt", "atan"};
     private static final String[] OPERATORS = {"+", "-", "*", "/"};
     private static final Random random = new Random();
 	private static final double epsilon = 1e-5;
@@ -17,6 +22,10 @@ public class TestSuite {
 	public static void main(String[] args) {//demo part of the ExpressionParser class
 		ExpressionParser ep = new ExpressionParser();
 		try {
+//-- Register user defined functions
+			ep.registerFunction("cube", x -> x * x * x);
+			ep.registerFunction("atan", Math::atan);
+
 //-- Manual positive tests
 			Node p1 = ep.parseExpression("log(exp((sin(PI/4)+cos(PI/4))/(sqrt(2)*tan(PI/4))))");
 			System.out.println(ep.visit(p1));	
@@ -36,8 +45,6 @@ public class TestSuite {
 			System.out.println("Result: "+ep.evaluate(p3) + " expected result: 6.0");
 			System.out.println();
 
-			ep.registerFunction("cube", x -> x * x * x);
-			ep.registerFunction("atan", Math::atan);
 			Node p4 = ep.parseExpression("cube(2)*atan(tan(PI/8))/PI");
 			System.out.println(ep.visit(p4));
 			System.out.println();
@@ -52,9 +59,9 @@ public class TestSuite {
 			// Retrieve a JavaScript engine to use as reference
 			ScriptEngineManager manager = new ScriptEngineManager();
 			ScriptEngine engine = manager.getEngineByName("JavaScript");
-			String regex = "\\b(sin|cos|tan|log|exp|sqrt)\\b";//regex to adapt function format to javascript engine
+			String regex = "\\b(sin|cos|tan|log|exp|sqrt|atan)\\b";//regex to adapt function format to javascript engine
 
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 1000; i++) {
 				int M = random.nextInt(6);
 				int P = random.nextInt(6);
 				int F = random.nextInt(5);
@@ -90,7 +97,7 @@ public class TestSuite {
 		System.out.println("Automatic negative tests");
 		int testsPassed = 0;
 		int testsFailed = 0;
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 1000; i++) {
 			int M = random.nextInt(6);
 			int P = random.nextInt(6);
 			int F = random.nextInt(5);
