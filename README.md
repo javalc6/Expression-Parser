@@ -3,6 +3,9 @@ The class ExpressionParser implements expression parser. It supports parsing of 
 
 Numeric expressions may contain brackets ( ), operators *,-,/,+,"and" and "or" and numbers with optional decimal point and values "true" and "false".
 In addition it is possible to use constants "PI" and "E", functions sin(), cos(), tan(), log(), exp(), sqrt().
+The parser supports common relation operators like ==,!=, >,<, >= and <= and even conditional expressions like condition ? true : false
+
+User can register own functions and use them with Expression Parser
 
 # Methods
 The following methods are provided to parse and evaluate math expressions:
@@ -12,6 +15,8 @@ parseExpression(String expr): parses the given expression and returns a binary t
 evaluate(Node p): evaluates the binary tree containing an expression;
 
 visit(Node p): visits the binary tree containing an expression;
+
+registerFunction(String name, Function<Double, Double> logic): register user function with name and lambda logic
 ```
 
 # TestSuite
