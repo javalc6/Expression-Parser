@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ExpressionParser" default="run" basedir=".">
 
-    <!-- Directory properties -->
     <property name="src.dir" value="src"/>
     <property name="build.dir" value="classes"/>
 
-    <!-- Clean compiled classes -->
     <target name="clean">
         <delete dir="${build.dir}"/>
     </target>
 
-    <!-- Compile Java sources -->
     <target name="compile">
         <mkdir dir="${build.dir}"/>
         <javac srcdir="${src.dir}"
                destdir="${build.dir}"
                includeantruntime="false"
-               debug="true"/>
+               debug="true">
+            <exclude name="test/**" unless="with-tests"/>
+        </javac>
     </target>
 
-    <!-- Run the main class -->
     <target name="run" depends="compile">
         <java classname="math.TestSuite" fork="true">
             <classpath>
