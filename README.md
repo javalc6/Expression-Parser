@@ -22,7 +22,7 @@ registerFunction(String name, Function<Double, Double> logic): register user fun
 # TestSuite
 The TestSuite performs positive and negative tests. Compile TestSuite to test package math:
 ```
-ant compile
+ant compile -Dwith-tests=true
 ```
 Run test suite:
 ```
