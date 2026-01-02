@@ -7,8 +7,12 @@ The parser supports common relation operators like ==,!=, >,<, >= and <= and eve
 
 User can register own functions and use them with Expression Parser
 
-# Methods
-The following methods are provided to parse and evaluate math expressions:
+# How to use
+Instantiate an ExpressionParser:
+```
+ExpressionParser ep = new ExpressionParser();
+```
+Use *ep* to call one of the following methods to parse and evaluate math expressions:
 ```
 parseExpression(String expr): parses the given expression and returns a binary tree representing the parse expression;
 
