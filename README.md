@@ -4,9 +4,14 @@ A recursive descent expression parser for mathematical and boolean expressions i
 
 ## Quick Start
 
-```java
-import math.ExpressionParser;
-import math.Node;
+# How to use
+Instantiate an ExpressionParser:
+```
+ExpressionParser ep = new ExpressionParser();
+```
+Use *ep* to call one of the following methods to parse and evaluate math expressions:
+```
+parseExpression(String expr): parses the given expression and returns a binary tree representing the parse expression;
 
 ExpressionParser parser = new ExpressionParser();
 
